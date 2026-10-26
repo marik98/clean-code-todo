@@ -8,23 +8,23 @@ const completedTasksHolder = document.getElementById('completed-tasks'); //compl
 const createNewTaskElement = function (taskString) {
   const listItem = document.createElement('li');
 
-  //input (checkbox)
+  
   const checkBox = document.createElement('input'); //checkbx
-  //label
+  
   const label = document.createElement('label'); //label
-  //input (text)
+ 
   const editInput = document.createElement('input'); //text
-  //button.edit
+  
   const editButton = document.createElement('button'); //edit button
 
-  //button.delete
+  
   const deleteButton = document.createElement('button'); //delete button
   const deleteButtonImg = document.createElement('img'); //delete button image
 
   label.innerText = taskString;
   label.className = 'task';
 
-  //Each elements, needs appending
+  
   checkBox.type = 'checkbox';
   editInput.type = 'text';
   editInput.className = 'task';
@@ -36,7 +36,7 @@ const createNewTaskElement = function (taskString) {
   deleteButtonImg.src = './remove.svg';
   deleteButton.appendChild(deleteButtonImg);
 
-  //and appending.
+ 
   listItem.appendChild(checkBox);
   listItem.appendChild(label);
   listItem.appendChild(editInput);
@@ -47,11 +47,11 @@ const createNewTaskElement = function (taskString) {
 
 const addTask = function () {
   
-  //Create a new list item with the text from the #new-task:
+  
   if (!taskInput.value) return;
   const listItem = createNewTaskElement(taskInput.value);
 
-  //Append listItem to incompleteTaskHolder
+  
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
 
@@ -69,10 +69,10 @@ const editTask = function () {
   const label = listItem.querySelector('label');
   const editBtn = listItem.querySelector('.edit');
   const isEditMode = listItem.classList.contains('editMode');
-  //If class of the parent is .editmode
+  
   if ( isEditMode) {
-    //switch to .editmode
-    //label becomes the inputs value.
+    
+    
     label.innerText = editInput.value;
     editBtn.innerText = 'Edit';
   } else {
@@ -80,7 +80,7 @@ const editTask = function () {
     editBtn.innerText = 'Save';
   }
 
-  //toggle .editmode on the parent.
+  
   listItem.classList.toggle('editMode');
 };
 
@@ -90,7 +90,7 @@ const deleteTask = function () {
 
   const listItem = this.parentNode;
   const taskList = listItem.parentNode;
-  //Remove the parent list item from the ul.
+  
   taskList.removeChild(listItem);
 };
 
@@ -98,7 +98,7 @@ const deleteTask = function () {
 const taskCompleted = function () {
   
 
-  //Append the task list item to the #completed-tasks
+  
   const listItem = this.parentNode;
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
@@ -106,9 +106,8 @@ const taskCompleted = function () {
 
 const taskIncomplete = function () {
  
-  //Mark task as incomplete.
-  //When the checkbox is unchecked
-  //Append the task list item to the #incompleteTasks.
+  
+  
   const listItem = this.parentNode;
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
